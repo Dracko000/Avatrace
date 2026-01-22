@@ -1,0 +1,14 @@
+[profile.default]
+src = "contracts"
+out = "out"
+libs = ["node_modules", "lib"]
+
+[rpc_endpoints]
+avalanche = "https://api.avax.network/ext/bc/C/rpc"
+avalanche_fuji = "https://api.avax-test.network/ext/bc/C/rpc"
+
+[etherscan]
+avalanche = { key = "${ETHERSCAN_API_KEY}" }
+avalanche_fuji = { key = "${ETHERSCAN_API_KEY}" }
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

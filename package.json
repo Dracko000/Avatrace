@@ -1,0 +1,28 @@
+{
+  "name": "avalanche-debugger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test-runner.js",
+    "build": "echo 'Building with forge...'",
+    "deploy": "node deploy-script.js",
+    "deploy:fuji": "node deploy-script.js --network fuji"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.1.0",
+    "@nomicfoundation/hardhat-ethers": "^4.0.4",
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "chai": "^4.5.0",
+    "ethers": "^6.16.0",
+    "hardhat": "^3.1.5",
+    "mocha": "^10.2.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
