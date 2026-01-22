@@ -23,6 +23,10 @@
     "mocha": "^10.2.0"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "axios": "^1.13.2",
+>>>>>>> 28b24fb (avatrace)
     "dotenv": "^16.3.1"
   }
 }

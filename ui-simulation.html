@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Avalanche Debugger UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2d3748;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4299e1;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #3182ce;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f7fafc;
+            border-left: 4px solid #4299e1;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .status-success {
+            border-left-color: #48bb78;
+        }
+        .status-error {
+            border-left-color: #f56565;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Avalanche Smart Contract Debugger</h1>
+        <p>This is a simulation of the Avalanche Debugger UI. In the actual application, you would connect to the backend server to debug transactions.</p>
+        
+        <div class="input-group">
+            <label for="txHash">Enter Transaction Hash:</label>
+            <input type="text" id="txHash" placeholder="0x..." value="0x105dc64c010f1f58731cc7829a5f53702e47c1f979011994376e326521779b3a">
+        </div>
+        
+        <button onclick="debugTransaction()">Debug Transaction</button>
+        
+        <div id="result" class="result" style="display:none;">
+            <h3>Debug Result:</h3>
+            <div id="resultContent"></div>
+        </div>
+    </div>
+
+    <script>
+        async function debugTransaction() {
+            const txHash = document.getElementById('txHash').value;
+            const resultDiv = document.getElementById('result');
+            const resultContent = document.getElementById('resultContent');
+            
+            if (!txHash) {
+                alert('Please enter a transaction hash');
+                return;
+            }
+            
+            // Show loading state
+            resultContent.textContent = 'Debugging transaction...';
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            
+            try {
+                // Simulate API call to backend
+                // In the real application, this would call the backend API
+                const mockResult = {
+                    status: 'success',
+                    trace: {
+                        transactionHash: txHash,
+                        status: 'success',
+                        gasUsed: '105943',
+                        cumulativeGasUsed: '105943',
+                        logs: [
+                            {
+                                address: '0x4CB898220E0956F59CcF2A642f9376A21d62E69c',
+                                topics: [
+                                    '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+                                    '0x0000000000000000000000006ec807b46054a3a7a5e3829b5e063b0a9354fcb0',
+                                    '0x0000000000000000000000001600638afadd0a5da14a69c51e1d221ded11f4ec'
+                                ],
+                                data: '0x0000000000000000000000000000000000000000000000008ac7230489e80000'
+                            },
+                            {
+                                address: '0x1600638afADD0A5Da14a69c51e1D221DEd11f4eC',
+                                topics: [
+                                    '0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822',
+                                    '0x0000000000000000000000008667d4a4c2f86d28c0865ea737e2ba7619560802',
+                                    '0x0000000000000000000000006ec807b46054a3a7a5e3829b5e063b0a9354fcb0'
+                                ],
+                                data: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008ac7230489e8000000000000000000000000000000000000000000000000000088fee6055e18c6fc0000000000000000000000000000000000000000000000000000000000000000'
+                            }
+                        ]
+                    }
+                };
+                
+                // Simulate delay
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                resultContent.textContent = JSON.stringify(mockResult, null, 2);
+                resultDiv.classList.add('status-success');
+            } catch (error) {
+                resultContent.textContent = `Error: ${error.message}`;
+                resultDiv.classList.add('status-error');
+            }
+        }
+        
+        // Allow pressing Enter to trigger the debug
+        document.getElementById('txHash').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                debugTransaction();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -6,9 +6,15 @@ const port = 5000;
 
 app.use(express.json());
 
+<<<<<<< HEAD
 // Initialize provider for Avalanche
 const provider = new ethers.JsonRpcProvider(
   process.env.AVALANCHE_RPC_URL || 'https://api.avax.network/ext/bc/C/rpc'
+=======
+// Initialize provider for Avalanche Fuji (testnet)
+const provider = new ethers.JsonRpcProvider(
+  process.env.AVALANCHE_FUJI_RPC_URL || 'https://api.avax-test.network/ext/bc/C/rpc'
+>>>>>>> 28b24fb (avatrace)
 );
 
 // Endpoint untuk debugging
